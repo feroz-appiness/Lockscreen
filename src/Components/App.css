@@ -1,0 +1,12 @@
+*{
+  padding: 0px;
+  margin: 0px;
+}
+
+.App-Container{
+  position: relative;
+width: 1440px;
+height: 900px;
+
+background: #FFFFFF;
+}
