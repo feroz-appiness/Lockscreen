@@ -20,7 +20,7 @@ const useStyles=makeStyles({
     },
 
 lockScreenRight :{
-    backgroundColor: '#FFFFFF',
+    
     position: 'absolute',
     right: '0px',
     top: '0px',
