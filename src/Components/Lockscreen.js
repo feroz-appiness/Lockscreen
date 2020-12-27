@@ -2,14 +2,14 @@ import React from 'react'
 
 import flexibeesLogo from '../Assets/Group.png'
 import loginImage from '../Assets/Login-image.png'
-import Button from '../Components/Button'
+import FbButton from '../Components/Button'
 import {useState} from 'react'
 import {Link,Redirect} from 'react-router-dom'
-import Grid from "@material-ui/core/Grid";
+import {Grid,Container,Box} from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles=makeStyles({
-    root: { flexGrow: 1 },
+   
     flexibeesLogoRightSide:{
         position: 'absolute',
        
@@ -38,18 +38,7 @@ bottom: '61.57%',
 width: '331.67px',
 height: '80px'
 },
-flexibeesLoginText:{
-    fontFamily: 'Manrope',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '34px',
-    lineHeight: '40px',
-    
-    color: '#000000',
 
-
-
-},
 
 buttonWrapper:{
     position: 'absolute',
@@ -70,14 +59,14 @@ const Lockscreen = (props) => {
         setisLoggedIn(true)
     }
     isLoggedIn && <Redirect to='/Dashboard'/>
-
+const buttonLabels=['Get Started','view or update']
     return (
-       <div className={classes.root}>
-       <Grid container >
-       <Grid item xs={12} lg={6} sm={12} md={12}>
-      <img src={loginImage} alt='login-img'/>
-      </Grid>
-      <Grid item xs={12} lg={6} sm={12} md={12}>
+       <Box >
+       
+       
+      <img src={loginImage} alt='login-img' height='400' style={{height:'auto',maxWidth:'100%'}}/>
+   
+     
       <div className={classes.lockScreenRight }>
       
       <img className={classes.flexibeesLogoRightSide} alt='flexibees logo' src={flexibeesLogo}/>
@@ -87,15 +76,15 @@ const Lockscreen = (props) => {
       <p className={classes.flexibeesLoginText}>Login to flexibees as a Super admin</p>
       </div>
       <div className={classes.buttonWrapper}>
-      <Link style={{ textDecoration: 'none' }} to='/Dashboard'><Button onClick={handleSetLogIn} buttonText='Get Started'></Button></Link>
+      <Link style={{ textDecoration: 'none' }} to='/Dashboard'><FbButton onClick={handleSetLogIn} buttonText={buttonLabels} bgColor={'red'} Width={'163px'} Height={'50px'}></FbButton></Link>
       </div>
      
       
     </div>
-      </Grid>
      
-      </Grid>
-       </div>
+     
+     
+       </Box>
       
        
      

@@ -5,35 +5,45 @@ import { makeStyles } from '@material-ui/core/styles';
 
 
 
-const useStyles=makeStyles({
+const useStyles=(bgColor,Width,Height)=>makeStyles({
     root:{
-        backgroundColor: '#F8B817',
+        backgroundColor: bgColor,
         '&:hover': {
-            backgroundColor: "#F8B817",
+            backgroundColor: bgColor,
          },
-        width:'163px',
-        height:'50px',
-        borderRadius:'4px'
+        width:Width,
+        height:Height,
+        borderRadius:'4px',
+        fontFamily: 'Manrope',
+        textTransform: 'none',
+
+fontWeight: 'bold',
+fontSize: '15px',
+lineHeight: '170%',
+color:'#222222',
+fontStyle:' normal',
+textAlign: 'center',
+letterSpacing: '0.16px',
+fontFeatureSettings: `'pnum' on, 'lnum' on`,
+
         
     },
-    flexibeesButton:{position: 'absolute',
-        left: '0%',
-        right: '0%',
-        top: '0%',
-        bottom: '0%',
-        backgroundColor: '#F8B817',
-        borderRadius: '4px'
-        }
+    
 
 })
-const FlexiBeesButton = (props) => {
-    const classes=useStyles()
-    const {buttonText}=props
+const FbButton = (props) => {
+  
+    const {buttonText,bgColor,Width,Height}=props
+    const classes=useStyles(bgColor,Width,Height)()
     return (
         <div className='flexibees-button'>
-        <Button  className={classes.root} disableRipple><p>{buttonText}</p></Button>
+        {buttonText.map(item=>{
+            return(
+                <Button className={classes.root}>{item}</Button>
+            )
+        })}
         </div>
     )
 }
 
-export default FlexiBeesButton
+export default FbButton
