@@ -1,98 +1,98 @@
-import React from 'react'
+import React, { Children } from "react";
 
-import flexibeesLogo from '../Assets/Group.png'
-import loginImage from '../Assets/Login-image.png'
-import FbButton from '../Components/Button'
-import {useState} from 'react'
-import {Link,Redirect} from 'react-router-dom'
-import {Grid,Container,Box} from "@material-ui/core";
-import { makeStyles } from '@material-ui/core/styles';
+import flexibeesLogo from "../Assets/Group.png";
 
-const useStyles=makeStyles({
-   
-    flexibeesLogoRightSide:{
-        position: 'absolute',
-       
-        top: '94.34px',
-        bottom: '652.34px',
-        right: '373.03px'
-     
-    },
+import FbButton from "../Components/Button";
+import { useState } from "react";
+import { Link, Redirect } from "react-router-dom";
+import { Grid, Box, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
-lockScreenRight :{
-    
-    position: 'absolute',
-    right: '0px',
-    top: '0px',
-    bottom: '0px',
-    
-    width: '651.4px'
-    
-},
-flexibeesLoginTextWrapper:{
-    position: 'absolute',
-left: '20.29%',
-right: '11.68%',
-top: '29.54%',
-bottom: '61.57%',
-width: '331.67px',
-height: '80px'
-},
+const useStyles = makeStyles({
+  container: {
+    height: "100%",
+  },
 
+  flexiRoundedLogo: {},
+  rightSidePart: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
 
-buttonWrapper:{
-    position: 'absolute',
-    top: '70%',
-    left: '20%'
-    
-
-}
-
-})
-
-
+    // border: "1px solid",
+    marginTop: "10%",
+    marginLeft: "20%",
+    height: "100%",
+  },
+  loginButton: {
+    marginTop: "50%",
+  },
+  loginText: {
+    width: "320px",
+    fontSize: "34px",
+    fontWeight: 400,
+    fontFamily: "manrope",
+    fontStyle: "normal",
+  },
+  loginAndInputsWrapper: {
+    marginLeft: "7%",
+  },
+});
 
 const Lockscreen = (props) => {
-    const classes=useStyles()
-    const [isLoggedIn,setisLoggedIn]=useState(false)
-    const handleSetLogIn=()=>{
-        setisLoggedIn(true)
-    }
-    isLoggedIn && <Redirect to='/Dashboard'/>
-const buttonLabels=['Get Started','view or update']
-    return (
-       <Box >
-       
-       
-      <img src={loginImage} alt='login-img' height='400' style={{height:'auto',maxWidth:'100%'}}/>
-   
-     
-      <div className={classes.lockScreenRight }>
-      
-      <img className={classes.flexibeesLogoRightSide} alt='flexibees logo' src={flexibeesLogo}/>
-     
-      
-      <div className={classes.flexibeesLoginTextWrapper}>
-      <p className={classes.flexibeesLoginText}>Login to flexibees as a Super admin</p>
-      </div>
-      <div className={classes.buttonWrapper}>
-      <Link style={{ textDecoration: 'none' }} to='/Dashboard'><FbButton onClick={handleSetLogIn} buttonText={buttonLabels} bgColor={'red'} Width={'163px'} Height={'50px'}></FbButton></Link>
-      </div>
-     
-      
-    </div>
-     
-     
-     
-       </Box>
-      
-       
-     
-       
-    
-       
-      
-    )
-}
+  console.log("🚀 ~ file: Lockscreen.js ~ line 51 ~ Lockscreen ~ props", props);
+  const classes = useStyles();
+  const [isLoggedIn, setisLoggedIn] = useState(false);
+  const handleSetLogIn = () => {
+    setisLoggedIn(true);
+  };
+  isLoggedIn && <Redirect to="/Dashboard" />;
 
-export default Lockscreen
+  return (
+    <Box className={classes.container} component={Grid} container>
+      <Grid item lg={6} xs={12} md={12} sm={6}>
+        <img
+          src={props.loginImageforBD}
+          alt="login-img"
+          height="400"
+          style={{ height: "auto", maxWidth: "100%" }}
+        />
+      </Grid>
+
+      <Grid item lg={6} xs={12} sm={6} md={12}>
+        <Box className={classes.rightSidePart}>
+          <img
+            alt="flexibees logo"
+            src={flexibeesLogo}
+            className={classes.flexiRoundedLogo}
+          />
+          <Box className={classes.loginAndInputsWrapper}>
+            <Typography className={classes.loginText}>
+              {props.loginText}
+            </Typography>
+
+            <Box className={classes.loginButton}>
+              <FbButton
+                variant="contained"
+                onClick={handleSetLogIn}
+                disableRipple
+                disabled
+                style={{
+                  backgroundColor: " #F8B817",
+                  width: "200px",
+                  height: "50px",
+                  color: "white",
+                }}
+              >
+                Get Started
+              </FbButton>
+            </Box>
+          </Box>
+        </Box>
+      </Grid>
+    </Box>
+  );
+};
+
+export default Lockscreen;
